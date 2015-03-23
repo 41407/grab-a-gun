@@ -47,7 +47,7 @@ public class ObjectPool : MonoBehaviour
 		newObject.transform.rotation = rotation;
 		return newObject;
 	}
-
+	
 	void InitializeByKey (GameObject key, int poolSize)
 	{
 		objectPool.Add (key, new List<GameObject> ());

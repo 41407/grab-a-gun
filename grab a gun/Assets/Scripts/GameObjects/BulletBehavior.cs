@@ -5,7 +5,11 @@ public class BulletBehavior : MonoBehaviour {
 
 	public float speed = 1.0f;
 
-	void Update () {
-		transform.Translate (transform.rotation * Vector3.up * speed * Time.deltaTime);
+	void Start () {
+		GetComponent<Rigidbody2D>().AddForce(transform.rotation * Vector3.up * speed);
+	}
+
+	public void SetVelocity (Vector2 velocity) {
+		GetComponent<Rigidbody2D> ().velocity = velocity;
 	}
 }
