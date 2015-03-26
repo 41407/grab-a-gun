@@ -27,7 +27,6 @@ public class Health : MonoBehaviour
 		{
 				currentHealth -= damage;
 				if (tookDamage) {
-//						Instantiate (tookDamage, transform.position, Quaternion.identity);
 						ObjectPool.pool.Pull (tookDamage, transform.position, transform.rotation).SetActive (true);
 		
 				}
@@ -42,7 +41,6 @@ public class Health : MonoBehaviour
 								gameObject.SendMessage ("ApplyScoring");
 						}
 						if (explosion) {
-//								Instantiate (explosion, transform.position, Quaternion.identity);
 								ObjectPool.pool.Pull (explosion, transform.position, transform.rotation).SetActive (true);
 		
 						}
