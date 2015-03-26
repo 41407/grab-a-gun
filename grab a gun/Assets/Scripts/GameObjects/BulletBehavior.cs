@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BulletBehavior : MonoBehaviour {
 
-	public float speed = 1.0f;
+	public float speed = 500.0f;
 
 	void Start () {
 		GetComponent<Rigidbody2D>().AddForce(transform.rotation * Vector3.up * speed);
