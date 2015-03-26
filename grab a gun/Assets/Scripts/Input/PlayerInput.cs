@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerInput : MonoBehaviour
 {
-	public float maxSpeed;
+	public float acceleration;
 
 	void Update ()
 	{
@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
 	void Movement ()
 	{	
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-		gameObject.GetComponent<Rigidbody2D>().AddForce(input * maxSpeed);
+		gameObject.GetComponent<Rigidbody2D>().AddForce(input * acceleration);
 	}
 
 	void Firing ()

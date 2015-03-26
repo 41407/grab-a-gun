@@ -5,7 +5,7 @@ public class BulletBehavior : MonoBehaviour {
 
 	public float speed = 500.0f;
 
-	void Start () {
+	void OnEnable () {
 		GetComponent<Rigidbody2D>().AddForce(transform.rotation * Vector3.up * speed);
 	}
 
