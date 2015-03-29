@@ -12,4 +12,8 @@ public class BulletBehavior : MonoBehaviour {
 	public void SetVelocity (Vector2 velocity) {
 		GetComponent<Rigidbody2D> ().velocity = velocity;
 	}
+
+	public void SetSpeed (float magnitude) {
+		GetComponent<Rigidbody2D> ().AddForce (transform.rotation * Vector3.up * magnitude);
+	}
 }

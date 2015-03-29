@@ -3,5 +3,5 @@ using System.Collections;
 
 public enum PowerupClass {
 
-	None, MachineGun
+	None, MachineGun, Shotgun
 }
