@@ -14,6 +14,9 @@ public class DefaultGun : MonoBehaviour
 		if (fireTimer <= 0 && firing) {
 			Fire ();
 		}
+		if (ammo <= 0) {
+			currentPowerup = PowerupClass.None;
+		}
 	}
 
 	void StartFiring ()
@@ -58,7 +61,9 @@ public class DefaultGun : MonoBehaviour
 	void FireMachineGun ()
 	{
 		fireTimer = 0.05f;
-		GameObject bullet = Factory.create.PlayerBullet (transform.position, transform.rotation);
+		ammo--;
+		Quaternion rotation = transform.rotation * Quaternion.AngleAxis (Random.Range (-5.0f, 5.0f), Vector3.forward);
+		GameObject bullet = Factory.create.PlayerBullet (transform.position, rotation);
 		bullet.SendMessage ("SetVelocity", GetComponent<Rigidbody2D> ().velocity);
 	}
 }
