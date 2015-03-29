@@ -6,6 +6,7 @@ public class Factory : MonoBehaviour
 	public GameObject player;
 	public GameObject playerBullet;
 	public GameObject enemy;
+	public GameObject spawner;
 
 	//Here is a private reference only this class can access
 	private static Factory _instance;
@@ -37,9 +38,14 @@ public class Factory : MonoBehaviour
 	{
 		return InitializeParameters (ObjectPool.pool.Pull (playerBullet, position, rotation));
 	}
-
+	
 	public GameObject Enemy (Vector2 position, Quaternion rotation)
 	{
 		return InitializeParameters (ObjectPool.pool.Pull (enemy, position, rotation));
+	}
+	
+	public GameObject Spawner (Vector2 position, Quaternion rotation)
+	{
+		return InitializeParameters (ObjectPool.pool.Pull (spawner, position, rotation));
 	}
 }

@@ -9,5 +9,8 @@ public class Mouse : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			Factory.create.Enemy(transform.position, Quaternion.identity);
 		}
+		if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			Factory.create.Spawner(transform.position, Quaternion.identity);
+		}
 	}
 }

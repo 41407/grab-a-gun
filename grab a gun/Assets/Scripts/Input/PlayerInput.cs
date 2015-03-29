@@ -14,21 +14,16 @@ public class PlayerInput : MonoBehaviour
 	void Movement ()
 	{	
 		Vector2 input = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
-		gameObject.GetComponent<Rigidbody2D>().AddForce(input * acceleration);
+		gameObject.GetComponent<Rigidbody2D> ().AddForce (input * acceleration);
 	}
 
 	void Firing ()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			InvokeRepeating ("InvokeFiring", 0, 0.16f);
+			gameObject.SendMessage ("StartFiring");
 		}
 		if (Input.GetMouseButtonUp (0)) {
-			CancelInvoke ();
+			gameObject.SendMessage ("CeaseFire");
 		}
-	}
-
-	void InvokeFiring ()
-	{
-		gameObject.SendMessage ("Fire");
 	}
 }
