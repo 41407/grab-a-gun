@@ -97,7 +97,7 @@ public class DefaultGun : MonoBehaviour
 			ammo--;
 			for (int i = 0; i < 13; i++) {
 				Quaternion rotation = transform.rotation * Quaternion.AngleAxis (Random.Range (-8.0f, 8.0f), Vector3.forward);
-				CreateBulletHereAndInheritVelocity (rotation, Random.Range (-20.0f, 0f));
+				CreateBulletHereAndInheritVelocity (rotation, Random.Range (0, 20f));
 			}
 			triggerReleased = false;
 		}
