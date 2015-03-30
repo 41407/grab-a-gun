@@ -71,7 +71,7 @@ public class DefaultGun : MonoBehaviour
 		bullet.SendMessage ("SetVelocity", GetComponent<Rigidbody2D> ().velocity);
 		bullet.SendMessage ("SetSpeed", speed);
 		if (gunsmoke) {
-			Factory.create.ByReference (gunsmoke, transform.position, Quaternion.identity);
+			Factory.create.ByReference (gunsmoke, transform.position, transform.rotation);
 		}
 	}
 
