@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
+	public float initialSpawnDelay = 1.5f;
 	public int poolSize = 10;
 	public int numberOfEnemies = 1;
 	private int spawnedEnemies = 0;
@@ -10,6 +11,11 @@ public class Spawner : MonoBehaviour
 	void OnEnable ()
 	{
 		spawnedEnemies = 0;
+		Invoke ("StartSpawning", initialSpawnDelay);
+	}
+
+	private void StartSpawning ()
+	{
 		InvokeRepeating ("SpawnEnemy", 0.5f, 0.5f);
 	}
 
