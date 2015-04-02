@@ -4,15 +4,11 @@ using System.Collections;
 public class SetCutoutSprite : MonoBehaviour
 {
 	
-	public Texture sprite;
-	public Texture normalMap;
+	public Texture[] sprites;
 
 	// Use this for initialization
 	void OnEnable ()
 	{
-		GetComponent<Renderer> ().material.mainTexture = sprite;
-		if (normalMap) {
-			GetComponent<Renderer> ().material.SetTexture ("_BumpMap", normalMap);
-		}
+		GetComponent<Renderer> ().material.mainTexture = sprites[Random.Range(0, sprites.Length)];
 	}
 }
