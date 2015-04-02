@@ -44,6 +44,9 @@ public class DefaultGun : MonoBehaviour
 		case PowerupClass.Shotgun:
 			FireShotgun ();
 			break;
+		case PowerupClass.Revolver:
+			FireRevolver ();
+			break;
 		}
 	}
 
@@ -57,20 +60,23 @@ public class DefaultGun : MonoBehaviour
 		case PowerupClass.Shotgun:
 			ammo = 15;
 			break;
+		case PowerupClass.Revolver:
+			ammo = 12;
+			break;
 		}
 	}
 	
-	void ShootBullet ()
+	GameObject ShootBullet ()
 	{
-		ShootBullet (0, 0);
+		return ShootBullet (0, 0);
 	}
 	
-	void ShootBullet (float accuracy)
+	GameObject ShootBullet (float accuracy)
 	{
-		ShootBullet (accuracy, 0);
+		return ShootBullet (accuracy, 0);
 	}
 
-	void ShootBullet (float accuracy, float speed)
+	GameObject ShootBullet (float accuracy, float speed)
 	{
 		Quaternion rotation = transform.rotation * Quaternion.AngleAxis (Random.Range (-accuracy, accuracy), Vector3.forward);
 		GameObject bullet = Factory.create.PlayerBullet (transform.position, rotation);
@@ -79,6 +85,7 @@ public class DefaultGun : MonoBehaviour
 		if (gunsmoke) {
 			Factory.create.ByReference (gunsmoke, transform.position, transform.rotation);
 		}
+		return bullet;
 	}
 
 	void FireDefaultGun ()
@@ -103,6 +110,16 @@ public class DefaultGun : MonoBehaviour
 			for (int i = 0; i < 13; i++) {
 				ShootBullet (8, Random.Range (0, 20f));
 			}
+			triggerReleased = false;
+		}
+	}
+
+	void FireRevolver ()
+	{
+		if (triggerReleased) {
+			fireTimer = 0.2f;
+			ammo--;
+			ShootBullet (3).SendMessage("SetDamage", 100);
 			triggerReleased = false;
 		}
 	}

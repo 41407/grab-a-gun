@@ -31,7 +31,7 @@ public class ObjectPool : MonoBehaviour
 	public void Initialize (GameObject objectType, int poolSize)
 	{
 		if (!objectPool.ContainsKey (objectType)) {
-			print ("Pooling: " + objectType.name + " x " + poolSize);
+//			print ("Pooling: " + objectType.name + " x " + poolSize);
 			InitializeByKey (objectType, poolSize);
 		}
 	}
@@ -39,7 +39,7 @@ public class ObjectPool : MonoBehaviour
 	public GameObject Pull (GameObject objectType, Vector3 position, Quaternion rotation)
 	{
 		if (!objectPool.ContainsKey (objectType)) {
-			print (objectType.name + " pulled without prior initialization");
+//			print (objectType.name + " pulled without prior initialization");
 			Initialize (objectType);
 		}
 		GameObject newObject = PullFromList (objectPool [objectType], objectType);	

@@ -5,6 +5,7 @@ public class Factory : MonoBehaviour
 {
 	public GameObject player;
 	public GameObject playerBullet;
+	public GameObject playerRevolverBullet;
 	public GameObject enemy;
 	public GameObject spawner;
 
@@ -33,10 +34,15 @@ public class Factory : MonoBehaviour
 	{
 		return InitializeParameters (ObjectPool.pool.Pull (gameObject, position, rotation));
 	}
-
+	
 	public GameObject PlayerBullet (Vector2 position, Quaternion rotation)
 	{
 		return InitializeParameters (ObjectPool.pool.Pull (playerBullet, position, rotation));
+	}
+
+	public GameObject PlayerRevolverBullet (Vector2 position, Quaternion rotation)
+	{
+		return InitializeParameters (ObjectPool.pool.Pull (playerRevolverBullet, position, rotation));
 	}
 	
 	public GameObject Enemy (Vector2 position, Quaternion rotation)

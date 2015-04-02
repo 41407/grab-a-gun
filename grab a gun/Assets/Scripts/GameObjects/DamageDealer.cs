@@ -17,4 +17,9 @@ public class DamageDealer : MonoBehaviour
 			}
 		}
 	}
+
+	void SetDamage (int newDamage)
+	{
+		damage = newDamage;
+	}
 }
