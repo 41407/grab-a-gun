@@ -7,11 +7,15 @@ public class DamageDealer : MonoBehaviour
 	public int damage;
 	public int variance;
 	public bool destroyOnImpact = false;
+	public GameObject impactParticle;
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		if (tags.Contains (col.gameObject.tag)) {
 			col.gameObject.SendMessage ("TakeDamage", (Mathf.Max (damage + Random.Range (-variance, variance), 1)));
+			if (impactParticle) {
+				Factory.create.ByReference (impactParticle, transform.position, transform.rotation);
+			}
 			if (destroyOnImpact) {
 				gameObject.SetActive (false);
 			}
