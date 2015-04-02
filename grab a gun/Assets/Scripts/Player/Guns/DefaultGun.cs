@@ -60,13 +60,19 @@ public class DefaultGun : MonoBehaviour
 		}
 	}
 	
-	void CreateBulletHereAndInheritVelocity (Quaternion rotation)
+	void ShootBullet ()
 	{
-		CreateBulletHereAndInheritVelocity (rotation, 0);
+		ShootBullet (0, 0);
 	}
 	
-	void CreateBulletHereAndInheritVelocity (Quaternion rotation, float speed)
+	void ShootBullet (float accuracy)
 	{
+		ShootBullet (accuracy, 0);
+	}
+
+	void ShootBullet (float accuracy, float speed)
+	{
+		Quaternion rotation = transform.rotation * Quaternion.AngleAxis (Random.Range (-accuracy, accuracy), Vector3.forward);
 		GameObject bullet = Factory.create.PlayerBullet (transform.position, rotation);
 		bullet.SendMessage ("SetVelocity", GetComponent<Rigidbody2D> ().velocity);
 		bullet.SendMessage ("SetSpeed", speed);
@@ -78,15 +84,14 @@ public class DefaultGun : MonoBehaviour
 	void FireDefaultGun ()
 	{
 		fireTimer = 0.2f;
-		CreateBulletHereAndInheritVelocity (transform.rotation);
+		ShootBullet (3);
 	}
 
 	void FireMachineGun ()
 	{
 		fireTimer = 0.05f;
 		ammo--;
-		Quaternion rotation = transform.rotation * Quaternion.AngleAxis (Random.Range (-5.0f, 5.0f), Vector3.forward);
-		CreateBulletHereAndInheritVelocity (rotation);
+		ShootBullet (5);
 
 	}
 
@@ -96,8 +101,7 @@ public class DefaultGun : MonoBehaviour
 			fireTimer = 0.2f;
 			ammo--;
 			for (int i = 0; i < 13; i++) {
-				Quaternion rotation = transform.rotation * Quaternion.AngleAxis (Random.Range (-8.0f, 8.0f), Vector3.forward);
-				CreateBulletHereAndInheritVelocity (rotation, Random.Range (0, 20f));
+				ShootBullet (8, Random.Range (0, 20f));
 			}
 			triggerReleased = false;
 		}
