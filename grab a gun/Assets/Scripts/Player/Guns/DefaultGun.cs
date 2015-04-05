@@ -78,7 +78,7 @@ public class DefaultGun : MonoBehaviour
 
 	GameObject ShootBullet (float accuracy, float speed)
 	{
-		Quaternion rotation = transform.rotation * Quaternion.AngleAxis (Random.Range (-accuracy, accuracy), Vector3.forward);
+		Quaternion rotation = transform.rotation * Quaternion.AngleAxis (Random.Range (-accuracy, (accuracy != 0 ? accuracy + 1 : 0)), Vector3.forward);
 		GameObject bullet = Factory.create.PlayerBullet (transform.position, rotation);
 		bullet.SendMessage ("SetVelocity", GetComponent<Rigidbody2D> ().velocity);
 		bullet.SendMessage ("SetSpeed", speed);
@@ -119,7 +119,7 @@ public class DefaultGun : MonoBehaviour
 		if (triggerReleased) {
 			fireTimer = 0.2f;
 			ammo--;
-			ShootBullet (3).SendMessage("SetDamage", 100);
+			ShootBullet (3).SendMessage ("SetDamage", 100);
 			triggerReleased = false;
 		}
 	}
