@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
 	public int poolSize = 10;
 	public int numberOfEnemies = 1;
 	private int spawnedEnemies = 0;
+	public GameObject player;
 
 	void OnEnable ()
 	{
@@ -24,6 +25,7 @@ public class Spawner : MonoBehaviour
 		Factory.create.Enemy (transform.position, transform.rotation);
 		spawnedEnemies++;
 		if (spawnedEnemies >= numberOfEnemies) {
+			
 			gameObject.SetActive (false);
 		}
 	}
@@ -31,5 +33,10 @@ public class Spawner : MonoBehaviour
 	void OnDisable ()
 	{
 		CancelInvoke ();
+	}
+
+	public void SetPlayer (GameObject player)
+	{
+		GetComponent<LookAtObject> ().objectToLookAt = player;
 	}
 }
