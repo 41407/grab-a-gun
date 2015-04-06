@@ -91,14 +91,14 @@ public class DefaultGun : MonoBehaviour
 	void FireDefaultGun ()
 	{
 		fireTimer = 0.2f;
-		ShootBullet (3);
+		ShootBullet (3).SendMessage ("SetDamage", 1);
 	}
 
 	void FireMachineGun ()
 	{
 		fireTimer = 0.05f;
 		ammo--;
-		ShootBullet (5);
+		ShootBullet (5).SendMessage ("SetDamage", 1);
 
 	}
 
@@ -108,7 +108,7 @@ public class DefaultGun : MonoBehaviour
 			fireTimer = 0.2f;
 			ammo--;
 			for (int i = 0; i < 13; i++) {
-				ShootBullet (8, Random.Range (0, 20f));
+				ShootBullet (8, Random.Range (0, 20f)).SendMessage ("SetDamage", 1);
 			}
 			triggerReleased = false;
 		}

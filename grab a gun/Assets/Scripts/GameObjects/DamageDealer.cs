@@ -13,12 +13,12 @@ public class DamageDealer : MonoBehaviour
 	{
 		if (tags.Contains (col.gameObject.tag)) {
 			col.gameObject.SendMessage ("TakeDamage", (Mathf.Max (damage + Random.Range (-variance, variance), 1)));
-			if (impactParticle) {
-				Factory.create.ByReference (impactParticle, transform.position, transform.rotation);
-			}
-			if (destroyOnImpact) {
-				gameObject.SetActive (false);
-			}
+		}
+		if (impactParticle) {
+			Factory.create.ByReference (impactParticle, transform.position, transform.rotation);
+		}
+		if (destroyOnImpact) {
+			gameObject.SetActive (false);
 		}
 	}
 

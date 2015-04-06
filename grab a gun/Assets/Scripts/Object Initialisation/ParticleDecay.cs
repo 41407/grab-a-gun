@@ -6,7 +6,11 @@ public class ParticleDecay : MonoBehaviour
 	void Update ()
 	{
 		if (gameObject.GetComponent<ParticleSystem> ().isStopped) {
-			transform.parent.gameObject.SetActive (false);
+			if (transform.parent) {
+				transform.parent.gameObject.SetActive (false);
+			} else {
+				gameObject.SetActive (false);
+			}
 		}
 	}
 
