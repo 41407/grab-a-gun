@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
 	public int poolSize = 10;
 	public int numberOfEnemies = 1;
 	private int spawnedEnemies = 0;
+	public int monsterLevel = 0;
 	public GameObject player;
 
 	void OnEnable ()
@@ -22,10 +23,10 @@ public class Spawner : MonoBehaviour
 
 	private void SpawnEnemy ()
 	{
-		Factory.create.Enemy (transform.position, transform.rotation);
+		GameObject newEnemy = Factory.create.Enemy (transform.position, transform.rotation);
 		spawnedEnemies++;
 		if (spawnedEnemies >= numberOfEnemies) {
-			
+			newEnemy.SendMessage ("SetLoot", monsterLevel);
 			gameObject.SetActive (false);
 		}
 	}
@@ -33,6 +34,11 @@ public class Spawner : MonoBehaviour
 	void OnDisable ()
 	{
 		CancelInvoke ();
+	}
+
+	void SetMonsterLevel (int level)
+	{
+		monsterLevel = level;
 	}
 
 	public void SetPlayer (GameObject player)
