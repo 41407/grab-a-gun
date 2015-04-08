@@ -5,7 +5,6 @@ public class Factory : MonoBehaviour
 {
 	public GameObject player;
 	public GameObject playerBullet;
-	public GameObject playerRevolverBullet;
 	public GameObject enemy;
 	public GameObject spawner;
 	public GameObject machineGun;
@@ -41,11 +40,6 @@ public class Factory : MonoBehaviour
 	public GameObject PlayerBullet (Vector2 position, Quaternion rotation)
 	{
 		return ByReference (playerBullet, position, rotation);
-	}
-
-	public GameObject PlayerRevolverBullet (Vector2 position, Quaternion rotation)
-	{
-		return ByReference (playerRevolverBullet, position, rotation);
 	}
 	
 	public GameObject Enemy (Vector2 position, Quaternion rotation)
