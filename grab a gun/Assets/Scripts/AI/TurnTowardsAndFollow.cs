@@ -6,19 +6,28 @@ public class TurnTowardsAndFollow : MonoBehaviour
 	public GameObject player;
 	public float turningSpeed;
 	public float baseMoveSpeed = 300f;
+	public float moveSpeedModifier = 1.0f;
 	public float moveSpeedVariance;
+	private float randomSpeedModifier;
 	private float moveSpeed;
 
-	public void SetPlayer (GameObject player)
+	void SetPlayer (GameObject player)
 	{
 		this.player = player;
 	}
 
-	void OnEnable ()
+	void SetMoveSpeedModifier (float newModifier)
 	{
-		moveSpeed = baseMoveSpeed + Random.Range (0, moveSpeedVariance);
+		moveSpeedModifier = newModifier;
+		moveSpeed = CalculateSpeed ();
 	}
 
+	void OnEnable ()
+	{
+		randomSpeedModifier = Random.Range (0, moveSpeedVariance);
+		moveSpeed = CalculateSpeed ();
+	}
+	
 	void Update ()
 	{
 		if (player) {
@@ -27,7 +36,11 @@ public class TurnTowardsAndFollow : MonoBehaviour
 		GetComponent<Rigidbody2D> ().AddForce (transform.rotation * Vector2.up * moveSpeed * Time.deltaTime);
 	}
 
-	void TurnTowardsPlayer ()
+	private float CalculateSpeed() {
+		return (baseMoveSpeed + randomSpeedModifier) * moveSpeedModifier;
+	}
+
+	private void TurnTowardsPlayer ()
 	{
 		Vector2 heading = player.transform.position - transform.position;
 		float angle = transform.rotation.eulerAngles.z;
