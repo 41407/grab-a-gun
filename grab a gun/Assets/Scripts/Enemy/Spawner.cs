@@ -27,6 +27,7 @@ public class Spawner : MonoBehaviour
 		spawnedEnemies++;
 		if (spawnedEnemies >= numberOfEnemies) {
 			newEnemy.SendMessage ("SetLoot", monsterLevel);
+			newEnemy.transform.FindChild("Aura").SendMessage ("EnableAura");
 			gameObject.SetActive (false);
 		}
 	}

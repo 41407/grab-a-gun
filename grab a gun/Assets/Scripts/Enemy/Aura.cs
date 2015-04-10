@@ -10,6 +10,7 @@ public class Aura : MonoBehaviour
 	void OnEnable ()
 	{
 		emitsAura = false;
+		gameObject.GetComponent<ParticleSystem> ().Stop ();
 	}
 
 	void EnableAura ()
@@ -25,8 +26,10 @@ public class Aura : MonoBehaviour
 
 	void OnTriggerStay2D (Collider2D coll)
 	{
-		if (coll.gameObject.tag.Equals ("Enemy")) {
-			coll.gameObject.SendMessage ("ApplyAura", emittedAura);
+		if (emitsAura && Time.frameCount % 30 == 0) {
+			if (coll.gameObject.tag.Equals ("Enemy")) {
+				coll.gameObject.transform.FindChild ("Aura").SendMessage ("ApplyAura", emittedAura);
+			}
 		}
 	}
 
@@ -34,7 +37,8 @@ public class Aura : MonoBehaviour
 	{
 		switch (newAura) {
 		case AuraType.Speed:
-			gameObject.SendMessage ("SetMoveSpeedModifier", 1.5f);
+			gameObject.GetComponent<ParticleSystem> ().Play ();
+			gameObject.SendMessageUpwards ("SetMoveSpeedModifier", 1.5f);
 			Invoke ("DisableSpeedAura", 1.0f);
 			break;
 		default:
@@ -42,8 +46,10 @@ public class Aura : MonoBehaviour
 		}
 	}
 
-	private void DisableSpeedAura() {
-		gameObject.SendMessage("SetMoveSpeedModifier", 1.0f);
+	private void DisableSpeedAura ()
+	{
+		gameObject.GetComponent<ParticleSystem> ().Stop ();
+		gameObject.SendMessageUpwards ("SetMoveSpeedModifier", 1.0f);
 	}
 
 	private AuraType SetEmittedAura ()
