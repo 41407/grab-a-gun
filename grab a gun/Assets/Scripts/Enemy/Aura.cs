@@ -36,6 +36,7 @@ public class Aura : MonoBehaviour
 		case AuraType.Speed:
 			gameObject.SendMessage ("SetMoveSpeedModifier", 1.5f);
 			Invoke ("DisableSpeedAura", 1.0f);
+			break;
 		default:
 			break;
 		}
